@@ -1,0 +1,47 @@
+my-python-microservices/
+├── docker-compose.yml            # 本地开发docker-compose编排文件
+├── docker-compose.dev.yml        # 本地开发专用（带volume绑定，代码热更新）
+├── docker-compose.prod.yml       # 生产环境专用（固定镜像，不挂载本地volume）
+├── Makefile                       # 常用开发指令集合（up, down, build, test, format）
+├── README.txt                     # 项目说明文件（中日双语版）
+├── .gitignore                     # Git版本管理忽略文件（忽略缓存、日志、虚拟环境等）
+├── .env                           # 环境变量文件（如数据库密码等）
+├── .devcontainer/                 # VS Code远程容器开发环境设置
+│   ├── devcontainer.json          # DevContainer配置文件
+│   └── Dockerfile                 # DevContainer用Dockerfile
+├── .github/
+│   └── workflows/
+│       └── ci.yml                 # GitHub Actions的CI/CD流程定义
+├── shared/                        # 多个微服务共用的库
+│   ├── logger/
+│   │   └── logger.py               # 日志模块，标准化输出日志
+│   ├── database/
+│   │   └── database.py             # MySQL数据库连接管理
+│   └── cache/
+│       └── redis_client.py         # Redis缓存客户端封装
+├── infra/                         # 基础设施相关配置
+│   ├── mysql/
+│   │   └── init_db.sql             # MySQL初始化建表脚本
+│   └── kafka/                      # Kafka相关配置（可扩展）
+├── services/                      # 各个微服务（按功能拆分）
+│   ├── data-ingestor/              # 股票数据抓取服务
+│   │   ├── Dockerfile
+│   │   ├── requirements.txt
+│   │   └── app/
+│   │       ├── main.py             # FastAPI应用入口
+│   │       ├── services/           # 各种业务逻辑（如抓取模块）
+│   │       ├── models/             # Pydantic数据模型（定义请求/响应/数据结构）
+│   │       ├── routes/             # API路由定义
+│   │       └── utils/              # 工具函数（如日期处理、异常处理等）
+│   │   └── tests/                  # 单元测试代码
+│   ├── analyzer/                   # 股票数据分析服务（清洗、计算指标等）
+│   ├── model-service/              # AI模型推理服务
+│   └── api-gateway/                # 统一API访问入口服务
+├── tests/                          # 总测试目录（跨服务集成测试）
+│   ├── test_analyzer/               # analyzer相关测试
+│   └── test_gateway/                # api-gateway相关测试
+├── docs/                           # 文档目录
+│   ├── README.txt                   # 项目概览（中日双语）
+│   ├── architecture.txt             # 系统架构说明
+│   ├── system_flow.txt               # 系统整体流程说明
+│   └── project_structure.txt        # 项目目录总览（本文件）
