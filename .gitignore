@@ -5,6 +5,7 @@ __pycache__/
 .Python
 env/
 venv/
+venv312/
 .env
 *.sqlite3
 logs/

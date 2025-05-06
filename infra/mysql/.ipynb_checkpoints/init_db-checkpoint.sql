@@ -1,0 +1,21 @@
+CREATE DATABASE IF NOT EXISTS stock_data DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+USE stock_data;
+
+CREATE TABLE IF NOT EXISTS stock_prices (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    symbol VARCHAR(10) NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    volume BIGINT,
+    date DATE NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS companies (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    symbol VARCHAR(10) NOT NULL UNIQUE,
+    name VARCHAR(255),
+    industry VARCHAR(255),
+    market_cap BIGINT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

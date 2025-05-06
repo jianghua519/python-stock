@@ -1,3 +1,10 @@
+import sys
+import os
+
+# 获取上上级目录（shared 的父目录）
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../'))
+sys.path.append(BASE_DIR)
+
 from fastapi import FastAPI
 from shared.logger.logger import get_logger
 from shared.database.database import get_db_connection
